@@ -1,0 +1,107 @@
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 80px;
+  width: 80px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.kbd-navigation .square:focus {
+  background: #ddd;
+}
+
+.game {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game .game-info{
+  width: 100%;
+  text-align: center;
+  margin: 40px 0 0;
+}
+
+.game h1{
+  font-size: 55px;
+  color: #FE0001;
+  text-align: center;
+  width: 100%;
+}
+
+.game h1 span{
+  color: #2699ab;
+}
+
+.game .game-info .winner{
+  color: #FDD017;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.game .game-info .next-move{
+  color: #c05a88;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.game .game-info ol{
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  max-width: 500px;
+  display: inline-block;
+}
+
+.game .game-info li{
+  display: inline-block;
+  margin: 5px;
+}
+
+.game .game-info li:first-child button{
+  background: #64991e;
+  border: 1px solid #64991e;
+}
+
+.game .game-info li button{
+  border-radius: 20px;
+  padding: 5px 10px;
+  background: #7a30c2;
+  color: #fff;
+  font-size: 12px;
+  border: 1px solid #7a30c2;
+  cursor: pointer;
+}
+
+.game .game-board button .red{
+  color: #FE0001;
+}
+
+.game .game-board button .blue{
+  color: #2699ab;
+}
+
+.game-info {
+  margin-left: 20px;
+}

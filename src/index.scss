@@ -1,0 +1,32 @@
+*{
+  box-sizing: border-box;
+}
+
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+}
+
+ol, ul {
+  padding-left: 30px;
+}
+
+.main-container{
+  .nav-links{
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+      text-align: center;
+      li{
+        display: inline-block;
+        padding: 10px 40px;
+        a{
+          font-size: 18px;
+          color: #000;
+          text-decoration: none;
+        }
+      }
+  }
+}
