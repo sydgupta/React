@@ -9,12 +9,20 @@
         margin: 30px auto 50px;
         .input-div{
             margin-top: 20px;
-            input{
+            input, select{
                 width: 100%;
                 border: 1px solid #ccc;
                 border-radius: 4px;
                 padding: 5px 15px;
                 height: 36px;
+            }
+
+            textarea{
+                width: 100%;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                padding: 5px 15px;
+                height: 80px;
             }
             .control-error {
                 border: 1px solid red;
@@ -43,6 +51,9 @@
                 &:hover{
                     background: #fff;
                     color: purple;
+                }
+                &:disabled{
+                    opacity: .5;
                 }
             } 
         } 

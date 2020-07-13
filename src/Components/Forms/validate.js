@@ -11,6 +11,8 @@ const validate = (value, rules) => {
         case 'isEmail': isValid = isValid && emailValidator(value); break;
 
         case 'minValue': isValid = isValid && minValueValidator(value,  rules[rule]); break;
+
+        case 'maxLength': isValid = isValid && maxLengthValidator(value,  rules[rule]); break;
         
         default: isValid = true;
       }
@@ -24,9 +26,13 @@ const validate = (value, rules) => {
       return value.length >= minLength;
   }
 
+  const maxLengthValidator = (value, maxLength) => {
+    return value.length <= maxLength;
+  }
+
   const minValueValidator = (value, minValue) => {
     return value >= minValue;
-}
+  }
   
   const requiredValidator = value => {
       return value.trim() !== '';	

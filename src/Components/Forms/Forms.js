@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import TextBox from './Input/InputBox';
+import Textarea from './Textarea/Textarea';
+import SelectBox from './Select/SelectBox';
 import validate from './validate';
 import './Forms.scss';
 
@@ -11,9 +13,9 @@ class Forms extends Component {
     this.state = {
       formIsValid: false,
       formControls: {
-          fieldName: {
+          name: {
             value: '',
-            placeholder: 'Field Name',
+            placeholder: 'Name',
             valid: false,
             touched: false,
             validationRules: {
@@ -26,89 +28,75 @@ class Forms extends Component {
             }
           },
 
-          farmName: {
+          email: {
             value: '',
-            placeholder: 'Farm Name',
+            placeholder: 'Email',
             valid: false,
             touched: false,
             validationRules: {
                 minLength: 3,
-                isRequired: true
+                isRequired: true,
+                isEmail: true
             },
             errorMsgs: {
-              minLength: 'Farm name must be of atleast 3 letters.',
-              isRequired: 'Farm name is required.'
+              isRequired: 'Email is required.',
+              isEmail: 'Email must be of proper format (abcd@xyz.com)'
             }
           },
 
-          crop: {
+          phone: {
             value: '',
-            placeholder: 'Crop Name',
+            placeholder: 'Mobile Number',
             valid: false,
             touched: false,
             validationRules: {
-                minLength: 3,
-                isRequired: true
-            },
-            errorMsgs: {
-              minLength: 'Crop name must be of atleast 3 letters.',
-              isRequired: 'Crop name is required.'
-            }
-          },
-
-          plantingDate: {
-            value: '',
-            placeholder: 'Planting DOB',
-            valid: false,
-            touched: false,
-            validationRules: {
-                isRequired: true
-            },
-            errorMsgs: {
-              isRequired: 'Planting date is required.'
-            }
-          },
-
-          brand: {
-            value: '',
-            placeholder: 'Brand',
-            valid: false,
-            touched: false,
-            validationRules: {
-                minLength: 3
-            },
-            errorMsgs: {
-              minLength: 'Brand must be of atleast 3 letters.'
-            }
-          },
-
-          product: {
-            value: '',
-            placeholder: 'Product',
-            valid: false,
-            touched: false,
-            validationRules: {
-                minLength: 3
-            },
-            errorMsgs: {
-              minLength: 'Product name must be of atleast 3 letters.'
-            }
-          },
-
-          avgPopulation: {
-            value: '',
-            placeholder: 'Average Population',
-            valid: false,
-            touched: false,
-            validationRules: {
+                minLength: 10,
+                isRequired: true,
                 minValue: 0
             },
             errorMsgs: {
+              minLength: 'Mobile number must be of atleast 3 letters.',
+              isRequired: 'Mobile number is required.',
               minValue: 'Min value must not be less than 0'
             }
-          }
+          },
+
+          gender: {
+            value: '',
+            placeholder: 'What is your gender',
+            valid: false,
+            touched: false,
+            validationRules: {
+              isRequired: true,
+            },
+            errorMsgs: {
+              isRequired: 'Gender is required.'
+            },
+            options: [
+              { value: 'male', displayValue: 'Male' },
+              { value: 'female', displayValue: 'Female'}
+            ]
+          },
+
+          message: {
+            value: '',
+            placeholder: 'Message',
+            valid: false,
+            touched: false,
+            validationRules: {
+                minLength: 3,
+                maxLength: 250
+            },
+            errorMsgs: {
+              minLength: 'Message must be of atleast 3 letters.',
+              maxLength: 'Message should not be more than 250 letters.'
+            }
+          },
       }
-    } 
+    }
+    
+    this.changeHandler = this.changeHandler.bind(this);
+    this.formSubmitHandler = this.formSubmitHandler.bind(this);
   }
 
 
@@ -129,8 +117,8 @@ class Forms extends Component {
     updatedControls[name] = updatedFormElement;
 
     let formIsValid = true;
-    for (let inputIdentifier in updatedControls) {
-      formIsValid = updatedControls[inputIdentifier].valid && formIsValid;
+    for (let control in updatedControls) {
+      formIsValid = updatedControls[control].valid && formIsValid;
     }
   
     this.setState({
@@ -150,80 +138,58 @@ class Forms extends Component {
             <h3>Add Field</h3>
             <div className="form-container">
               <div className="input-div">
-                <label>Field Name</label>
-                <TextBox name="fieldName" 
-                          placeholder={this.state.formControls.fieldName.placeholder}
-                          value={this.state.formControls.fieldName.value}
+                <label>Name</label>
+                <TextBox name="name" 
+                          placeholder={this.state.formControls.name.placeholder}
+                          value={this.state.formControls.name.value}
                           onChange={this.changeHandler}
-                          touched={this.state.formControls.fieldName.touched}
-                          valid={this.state.formControls.fieldName.valid}
+                          touched={this.state.formControls.name.touched}
+                          valid={this.state.formControls.name.valid}
                           type="text" />
                 </div>
 
                 <div className="input-div">
-                  <label>Farm Name</label>
-                  <TextBox name="farmName" 
-                            placeholder={this.state.formControls.farmName.placeholder}
-                            value={this.state.formControls.farmName.value}
+                  <label>Email</label>
+                  <TextBox name="email" 
+                            placeholder={this.state.formControls.email.placeholder}
+                            value={this.state.formControls.email.value}
                             onChange={this.changeHandler}
-                            touched={this.state.formControls.farmName.touched}
-                            valid={this.state.formControls.farmName.valid}
-                            type="text" />
+                            touched={this.state.formControls.email.touched}
+                            valid={this.state.formControls.email.valid}
+                            type="email" />
                 </div>
 
                 <div className="input-div">
-                  <label>Crop</label>
-                  <TextBox name="crop" 
-                            placeholder={this.state.formControls.crop.placeholder}
-                            value={this.state.formControls.crop.value}
+                  <label>Phone</label>
+                  <TextBox name="phone" 
+                            placeholder={this.state.formControls.phone.placeholder}
+                            value={this.state.formControls.phone.value}
                             onChange={this.changeHandler}
-                            touched={this.state.formControls.crop.touched}
-                            valid={this.state.formControls.crop.valid}
-                            type="text" />
+                            touched={this.state.formControls.phone.touched}
+                            valid={this.state.formControls.phone.valid}
+                            type="number" />
                 </div>
 
                 <div className="input-div">
-                  <label>Planting Date</label>
-                  <TextBox name="plantingDate" 
-                            placeholder={this.state.formControls.plantingDate.placeholder}
-                            value={this.state.formControls.plantingDate.value}
-                            onChange={this.changeHandler}
-                            touched={this.state.formControls.plantingDate.touched}
-                            valid={this.state.formControls.plantingDate.valid}
-                            type="date" />
+                  <label>Gender</label>
+                  <SelectBox name="gender"
+                    value={this.state.formControls.gender.value}
+                    onChange={this.changeHandler}
+                    options={this.state.formControls.gender.options}
+                    touched={this.state.formControls.gender.touched}
+                    valid={this.state.formControls.gender.valid}
+                  />
                 </div>
 
                 <div className="input-div">
-                  <label>Brand</label>
-                  <TextBox name="brand" 
-                            placeholder={this.state.formControls.brand.placeholder}
-                            value={this.state.formControls.brand.value}
-                            onChange={this.changeHandler}
-                            touched={this.state.formControls.brand.touched}
-                            valid={this.state.formControls.brand.valid}
-                            type="text" />
-                </div>
-
-                <div className="input-div">
-                  <label>Product</label>
-                  <TextBox name="product" 
-                            placeholder={this.state.formControls.product.placeholder}
-                            value={this.state.formControls.product.value}
-                            onChange={this.changeHandler}
-                            touched={this.state.formControls.product.touched}
-                            valid={this.state.formControls.product.valid}
-                            type="text" />
-                </div>
-
-                <div className="input-div">
-                  <label>Average Population</label>
-                  <TextBox name="avgPopulation" 
-                            placeholder={this.state.formControls.avgPopulation.placeholder}
-                            value={this.state.formControls.avgPopulation.value}
-                            onChange={this.changeHandler}
-                            touched={this.state.formControls.avgPopulation.touched}
-                            valid={this.state.formControls.avgPopulation.valid}
-                            type="text" />
+                  <label>Message</label>
+                  <Textarea name="message"
+                    placeholder={this.state.formControls.message.placeholder}
+                    value={this.state.formControls.message.value}
+                    onChange={this.changeHandler}
+                    touched={this.state.formControls.message.touched}
+                    valid={this.state.formControls.message.valid}
+                  />
                 </div>
                 <div className="btn-container">
                   <button onClick={this.formSubmitHandler} disabled={!this.state.formIsValid}>Submit</button>
