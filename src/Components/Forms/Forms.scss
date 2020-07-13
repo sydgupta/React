@@ -1,0 +1,50 @@
+.form-wrapper{
+    h3{
+        font-size: 40px;
+        text-align: center;
+        color: #333;
+    }
+    .form-container{
+        max-width: 500px;
+        margin: 30px auto 50px;
+        .input-div{
+            margin-top: 20px;
+            input{
+                width: 100%;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                padding: 5px 15px;
+                height: 36px;
+            }
+            .control-error {
+                border: 1px solid red;
+            }
+            label{
+                margin-bottom: 10px;
+                font-size: 14px;
+                font-weight: 600;
+                color: #555;
+                display: inline-block;
+            }
+        }      
+        .btn-container{
+            text-align: center;
+            button{
+                background: purple;
+                color: #fff;
+                border: 1px solid purple;
+                padding: 10px 45px;
+                font-size: 16px;
+                font-weight: 600;
+                border-radius: 4px;
+                margin-top: 20px;
+                box-shadow: -3px 3px 5px #ccc;
+                cursor: pointer;
+                &:hover{
+                    background: #fff;
+                    color: purple;
+                }
+            } 
+        } 
+    }
+}
